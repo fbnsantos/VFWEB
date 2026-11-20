@@ -17,6 +17,8 @@ require __DIR__ . '/content.php';
 require __DIR__ . '/db.php';
 require __DIR__ . '/media.php';
 require __DIR__ . '/fields.php';
+require __DIR__ . '/stats.php';
+require __DIR__ . '/geoip.php';
 
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: strict-origin-when-cross-origin');

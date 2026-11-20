@@ -1,6 +1,7 @@
 <div class="head"><h1>Painel</h1><a class="btn" href="/" target="_blank">Ver site ↗</a></div>
 
 <div class="stats">
+    <a class="stat" href="/admin/stats"><b><?= (int) $views30 ?></b><span>Visualizações (30 dias)</span></a>
     <a class="stat" href="/admin/messages"><b><?= (int) $unread ?></b><span>Mensagens por ler</span></a>
     <?php foreach (collections() as $name => $col): ?>
         <a class="stat" href="/admin/c/<?= e($name) ?>"><b><?= (int) $counts[$name] ?></b><span><?= e($col['label']) ?></span></a>

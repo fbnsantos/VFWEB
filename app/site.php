@@ -31,6 +31,7 @@ function route_site(string $path): void
     }
     foreach (PAGES as $page => $def) {
         if ($def['path'] === $path) {
+            track_view('page');
             $fn = 'page_' . $page;
             $fn();
             return;
@@ -39,8 +40,23 @@ function route_site(string $path): void
     not_found();
 }
 
+/** Subsistemas (PK, DSS…) definidos em Textos → Geral: lista de [nome, endereço]. */
+function subsystems(): array
+{
+    $out = [];
+    foreach (lines(tx('site.subsystems')) as $line) {
+        [$name, $url] = array_map('trim', explode('|', $line, 2)) + [1 => ''];
+        $url = clean_link($url);
+        if ($name !== '' && $url !== '') {
+            $out[] = [$name, $url];
+        }
+    }
+    return $out;
+}
+
 function not_found(): void
 {
+    track_view('404');
     http_response_code(404);
     render('site/404', ['page' => '404', 'title' => 'Page not found — ' . tx('site.name'), 'description' => '', 'noindex' => true]);
 }

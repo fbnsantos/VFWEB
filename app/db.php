@@ -68,6 +68,30 @@ function migrate(PDO $pdo): void
         is_read INTEGER NOT NULL DEFAULT 0,
         created_at TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS page_views (
+        id INTEGER PRIMARY KEY,
+        created_at TEXT NOT NULL,
+        day TEXT NOT NULL,
+        path TEXT NOT NULL,
+        content_type TEXT NOT NULL DEFAULT '',
+        content_id INTEGER,
+        visitor TEXT NOT NULL,
+        referrer_host TEXT NOT NULL DEFAULT '',
+        source TEXT NOT NULL DEFAULT '',
+        channel TEXT NOT NULL DEFAULT '',
+        country TEXT NOT NULL DEFAULT '',
+        language TEXT NOT NULL DEFAULT '',
+        device TEXT NOT NULL DEFAULT '',
+        os TEXT NOT NULL DEFAULT '',
+        browser TEXT NOT NULL DEFAULT ''
+    );
+    CREATE INDEX IF NOT EXISTS page_views_day ON page_views (day);
+    CREATE TABLE IF NOT EXISTS bot_hits (
+        day TEXT NOT NULL,
+        bot TEXT NOT NULL,
+        hits INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY (day, bot)
+    );
     SQL);
 
     // Uma tabela por coleção, criada e atualizada a partir de collections() (app/content.php).

@@ -60,9 +60,7 @@ $v = fn(string $file) => '?v=' . (is_file(ROOT . $file) ? filemtime(ROOT . $file
       <a href="<?= $h ?>#solutions">Solutions</a>
       <div class="nav-dropdown" aria-label="Solutions submenu">
         <a href="/orioos"<?= $page === 'orioos' ? ' aria-current="page"' : '' ?>>Orioos</a>
-<?php foreach (lines(tx('site.subsystems')) as $sub):
-    [$subName, $subUrl] = array_map('trim', explode('|', $sub, 2)) + [1 => '']; $subUrl = clean_link($subUrl);
-    if ($subName === '' || $subUrl === '') continue; ?>
+<?php foreach (subsystems() as [$subName, $subUrl]): ?>
         <a href="<?= e($subUrl) ?>"><?= e($subName) ?></a>
 <?php endforeach; ?>
       </div>
@@ -102,6 +100,9 @@ $v = fn(string $file) => '?v=' . (is_file(ROOT . $file) ? filemtime(ROOT . $file
           <a href="<?= $h ?>#solutions">Solutions</a>
           <a href="<?= $h ?>#team">Team</a>
           <a href="/news">News</a>
+<?php foreach (subsystems() as [$subName, $subUrl]): ?>
+          <a href="<?= e($subUrl) ?>"><?= e($subName) ?> (login)</a>
+<?php endforeach; ?>
           <a href="<?= $contactHref ?>">Contact</a>
         </nav>
       </div>

@@ -37,6 +37,17 @@ function route_admin(string $sub, string $method): void
         admin_texts($m[1], $method);
     } elseif (preg_match('#^/c/([a-z]+)(?:/(new|\d+)(?:/(delete|move))?)?$#', $sub, $m) && isset(collections()[$m[1]])) {
         admin_collection($m[1], $m[2] ?? '', $m[3] ?? '', $method);
+    } elseif ($sub === '/stats') {
+        $days = (int) ($_GET['dias'] ?? 30);
+        $days = in_array($days, [7, 30, 90, 365], true) ? $days : 30;
+        admin_render('stats', ['title' => 'Visitas', 'r' => stats_report($days), 'geoip' => geoip_info()]);
+    } elseif ($sub === '/stats/geoip' && $method === 'POST') {
+        $error = geoip_update();
+        $info = geoip_info();
+        $error === null
+            ? flash('Base de países atualizada (DB-IP ' . ($info['month'] ?? '') . '). As próximas visitas já mostram o país.')
+            : flash($error, 'error');
+        redirect('/admin/stats');
     } elseif ($sub === '/messages') {
         admin_messages();
     } elseif (preg_match('#^/messages/(\d+)/(read|unread|delete)$#', $sub, $m) && $method === 'POST') {
@@ -425,6 +436,7 @@ function admin_dashboard(): void
         'title' => 'Painel',
         'counts' => $counts,
         'unread' => unread_messages(),
+        'views30' => stats_views_since(date('Y-m-d', strtotime('-29 days'))),
         'recent' => db()->query('SELECT * FROM messages ORDER BY id DESC LIMIT 5')->fetchAll(),
     ]);
 }

@@ -23,6 +23,7 @@ $flash = flash();
         <a class="logo" href="/admin"><?= e(tx('site.name')) ?> · backoffice</a>
         <nav>
             <?= $link('/admin', 'Painel') ?>
+            <?= $link('/admin/stats', 'Visitas') ?>
             <div class="group">Textos das páginas</div>
             <?php foreach (text_pages() as $key => $p): ?><?= $link("/admin/texts/$key", $p['label']) ?><?php endforeach; ?>
             <div class="group">Listas</div>

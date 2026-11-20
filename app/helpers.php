@@ -59,6 +59,18 @@ function now(): string
     return date('Y-m-d H:i:s');
 }
 
+/** Data em português para o backoffice (ex.: "3 de março de 2026"). */
+function format_date(?string $datetime): string
+{
+    if (!$datetime) {
+        return '';
+    }
+    $t = strtotime($datetime);
+    $months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho',
+        'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+    return date('j', $t) . ' de ' . $months[(int) date('n', $t) - 1] . ' de ' . date('Y', $t);
+}
+
 function slugify(string $s): string
 {
     $map = [
