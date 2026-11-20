@@ -29,6 +29,13 @@ function route_site(string $path): void
         sitemap_xml();
         return;
     }
+    if ($path === '/solutions') {
+        redirect('/#solutions', 301);
+    }
+    if (preg_match('#^/solutions/([a-z0-9-]+)$#', $path, $m)) {
+        page_solution($m[1]);
+        return;
+    }
     foreach (PAGES as $page => $def) {
         if ($def['path'] === $path) {
             track_view('page');
@@ -64,6 +71,35 @@ function menu_items(string $key, string $page): array
             $out[array_key_last($out)]['children'][] = [$name, $url];
         } else {
             $out[] = ['label' => $name, 'url' => $url, 'children' => []];
+        }
+    }
+    // As soluções criadas no backoffice entram sozinhas no submenu do item «#solutions» do topo.
+    if ($key === 'site.menu_top') {
+        foreach ($out as &$m) {
+            if (str_ends_with($m['url'], '#solutions')) {
+                foreach (solutions_list() as $s) {
+                    $m['children'][] = [$s['name'], '/solutions/' . $s['slug']];
+                }
+            }
+        }
+        unset($m);
+    }
+    return $out;
+}
+
+function solutions_list(): array
+{
+    return col_items('solutions', "slug <> ''");
+}
+
+/** «Nome | Valor» por linha → [[nome, valor], …]. */
+function pairs(string $text): array
+{
+    $out = [];
+    foreach (lines($text) as $line) {
+        [$a, $b] = array_map('trim', explode('|', $line, 2)) + [1 => ''];
+        if ($a !== '') {
+            $out[] = [$a, $b];
         }
     }
     return $out;
@@ -146,6 +182,26 @@ function page_orioos(): void
         'sensors' => col_items('sensors'),
         'platform' => col_items('platform'),
         'reqs' => col_items('reqs'),
+    ]);
+}
+
+/** Página de uma solução criada no backoffice (mesmo modelo e estilo da do Orioos). */
+function page_solution(string $slug): void
+{
+    $rows = col_items('solutions', 'slug = ?', [$slug]);
+    if (!$rows) {
+        not_found();
+        return;
+    }
+    $s = $rows[0];
+    track_view('solution', (int) $s['id']);
+    render('site/solution', [
+        'page' => 'solution',
+        'cssFile' => 'orioos',
+        'canonicalPath' => '/solutions/' . $s['slug'],
+        'title' => $s['name'] . ' — ' . tx('site.name'),
+        'description' => $s['meta_description'] !== '' ? $s['meta_description'] : $s['subtitle'],
+        's' => $s,
     ]);
 }
 
@@ -245,6 +301,9 @@ function sitemap_xml(): void
     if (indexing_allowed()) {
         foreach (PAGES as $def) {
             echo '  <url><loc>' . e(abs_url($def['path'])) . "</loc></url>\n";
+        }
+        foreach (solutions_list() as $s) {
+            echo '  <url><loc>' . e(abs_url('/solutions/' . $s['slug'])) . "</loc></url>\n";
         }
     }
     echo "</urlset>\n";

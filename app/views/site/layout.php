@@ -2,8 +2,8 @@
 /** @var string $page @var string $title @var string $description @var string $content */
 $h = hp($page);
 $contactHref = $page === 'news' ? '/#contact' : '#contact';
-$cssFile = PAGES[$page]['css'] ?? 'news'; // 404 usa o estilo do topo das notícias
-$canonical = abs_url(PAGES[$page]['path'] ?? '/');
+$cssFile = $cssFile ?? PAGES[$page]['css'] ?? 'news'; // 404 usa o estilo do topo das notícias
+$canonical = abs_url($canonicalPath ?? PAGES[$page]['path'] ?? '/');
 $shareImage = tx('site.share_image') !== '' ? abs_url(tx('site.share_image')) : '';
 $noindex = !empty($noindex) || !indexing_allowed();
 $linkedin = tx('site.linkedin');

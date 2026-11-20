@@ -94,6 +94,7 @@ function admin_nav(): array
             'home' => ['Página inicial', [['Textos', '/admin/texts/home'], ['Tecnologia', '/admin/c/tech'], ['Setores', '/admin/c/sectors'], ['Equipa', '/admin/c/team']]],
             'orioos' => ['Orioos', [['Textos', '/admin/texts/orioos'], ['Métricas', '/admin/c/metrics'], ['Capacidades', '/admin/c/caps'],
                 ['Especificações', '/admin/c/specs'], ['Sensores', '/admin/c/sensors'], ['Plataforma', '/admin/c/platform'], ['Requisitos', '/admin/c/reqs']]],
+            'solutions' => ['Soluções', [['Soluções', '/admin/c/solutions']]],
             'news' => ['Notícias', [['Notícias', '/admin/c/news'], ['Textos da página', '/admin/texts/news']]],
             'site' => ['Contactos e rodapé', [['Contactos e rodapé', '/admin/texts/site']]],
         ],
@@ -265,6 +266,20 @@ function admin_collection_save(string $name, array $col, ?array $row): void
     $values['visible'] = isset($_POST['visible']) ? 1 : 0;
 
     $pdo = db();
+    // Endereço (slug) gerado do campo indicado e único dentro da coleção.
+    if (!empty($col['slug'])) {
+        $base = slugify($values['slug'] !== '' ? (string) $values['slug'] : (string) $values[$col['slug']]) ?: 'item';
+        $slug = $base;
+        for ($n = 2; ; $n++) {
+            $st = $pdo->prepare("SELECT COUNT(*) FROM $table WHERE slug = ? AND id <> ?");
+            $st->execute([$slug, (int) ($row['id'] ?? 0)]);
+            if (!(int) $st->fetchColumn()) {
+                break;
+            }
+            $slug = $base . '-' . $n;
+        }
+        $values['slug'] = $slug;
+    }
     $pdo->beginTransaction();
     $now = now();
     if ($row) {

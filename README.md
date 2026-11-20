@@ -35,6 +35,7 @@ Abrir http://localhost:8080/admin: na primeira vez pede a `setup_key` para criar
 | Secção | O quê |
 |---|---|
 | **Textos das páginas** | Geral (nome, logótipos, contactos, rodapé, **menus do topo e do rodapé**), Página inicial, Página Orioos, Página de notícias: títulos, parágrafos, botões, imagens e vídeo. Nos títulos, `*palavra*` aparece destacada a verde. |
+| **Soluções** | Menu **Soluções** do backoffice: cada solução nova ganha a sua página `/solutions/nome` com o modelo do Orioos (métricas, vídeo, funcionalidades, especificações…), entra sozinha no submenu «Solutions» e no sitemap. |
 | **Listas** | Notícias, Equipa, Tecnologia, Setores, e do Orioos: métricas, capacidades (Agricultura/Vigilância), especificações, sensores, plataforma, requisitos. Criar, editar, esconder («Visível»), apagar e reordenar (↑ ↓). |
 | **SEO (Google)** | Secção só de SEO (`/admin/seo`): título e descrição de cada página com contador e pré-visualização do resultado no Google, indexação ligada/desligada, imagem de partilha, códigos do Google Search Console e Bing, e avisos (https, tamanhos, imagens sem texto alternativo). `robots.txt` e `sitemap.xml` são automáticos. |
 | **Visitas** | Estatísticas próprias, sem cookies nem serviços externos e sem guardar IPs: visualizações, visitantes únicos, páginas mais vistas, origem (Google, LinkedIn, IA…), países (base DB-IP local, botão no ecrã), dispositivos, robôs e 404. Visitas do admin e robôs não contam. Dados com mais de 13 meses são apagados. |
