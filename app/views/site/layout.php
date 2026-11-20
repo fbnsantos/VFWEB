@@ -138,6 +138,7 @@ $v = fn(string $file) => '?v=' . (is_file(ROOT . $file) ? filemtime(ROOT . $file
 <?php else: ?>
         <a href="/">Back to home</a>
 <?php endif; ?>
+        <a href="/admin" rel="nofollow">Backoffice</a>
       </div>
     </div>
   </div>
