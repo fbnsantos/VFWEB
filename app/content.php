@@ -451,7 +451,8 @@ function collections(): array
                 'title' => ['type' => 'text', 'label' => 'Título', 'required' => true],
                 'body' => ['type' => 'textarea', 'label' => 'Texto'],
                 'pills' => ['type' => 'lines', 'label' => 'Etiquetas (uma por linha)'],
-                'video' => ['type' => 'video', 'label' => 'Vídeo (MP4, em loop e sem som)'],
+                'image' => ['type' => 'image', 'label' => 'Imagem', 'hint' => 'Sozinha, é mostrada como foto. Com vídeo, aparece logo enquanto o vídeo carrega (capa).'],
+                'video' => ['type' => 'video', 'label' => 'Vídeo (opcional; MP4 curto e comprimido, em loop e sem som)'],
             ],
         ],
         'metrics' => [

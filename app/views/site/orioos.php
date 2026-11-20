@@ -48,9 +48,7 @@ $modes = array_keys($caps);
     </div>
 
     <div class="product-video reveal">
-      <video autoplay muted loop playsinline preload="metadata">
-        <source src="<?= e(tx_file('orioos.video')) ?>" type="video/<?= str_ends_with(tx('orioos.video'), '.webm') ? 'webm' : 'mp4' ?>">
-      </video>
+      <video muted loop playsinline preload="none" data-src="<?= e(tx_file('orioos.video')) ?>"></video>
     </div>
   </div>
 </section>

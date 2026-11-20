@@ -192,7 +192,8 @@
   aspect-ratio: 16 / 10;
 }
 
-.industry-media video {
+.industry-media video,
+.industry-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;

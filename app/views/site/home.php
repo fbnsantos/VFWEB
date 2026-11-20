@@ -55,9 +55,9 @@ $check = '<svg viewBox="0 0 10 10" fill="none" stroke="var(--vf-green-600)" stro
       <div class="industry-row<?= $i % 2 ? ' reverse' : '' ?> reveal">
         <div class="industry-media">
 <?php if ($s['video'] !== ''): ?>
-          <video autoplay muted loop playsinline preload="metadata">
-            <source src="<?= e(asset_url($s['video'])) ?>" type="video/<?= str_ends_with($s['video'], '.webm') ? 'webm' : 'mp4' ?>">
-          </video>
+          <video muted loop playsinline preload="none"<?= $s['image'] !== '' ? ' poster="' . e(asset_url($s['image'])) . '"' : '' ?> data-src="<?= e(asset_url($s['video'])) ?>" aria-label="<?= e($s['title']) ?>"></video>
+<?php elseif ($s['image'] !== ''): ?>
+          <img src="<?= e(asset_url($s['image'])) ?>" alt="<?= e($s['title']) ?>" loading="lazy">
 <?php endif; ?>
         </div>
         <div class="industry-text">

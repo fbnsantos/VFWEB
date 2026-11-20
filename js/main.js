@@ -18,6 +18,26 @@
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
+  // Vídeos leves: só se descarregam quando estão perto do ecrã, tocam enquanto visíveis
+  // e param fora dele (a página abre logo, sem esperar pelos vídeos). Não carregam com «poupar dados».
+  var videos = document.querySelectorAll("video[data-src]");
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (videos.length && "IntersectionObserver" in window && !saveData) {
+    var videoObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var v = entry.target;
+        if (entry.isIntersecting) {
+          if (!v.getAttribute("src")) v.src = v.getAttribute("data-src");
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        } else if (v.getAttribute("src")) {
+          v.pause();
+        }
+      });
+    }, { rootMargin: "200px 0px", threshold: 0.01 });
+    forEach(videos, function (v) { videoObserver.observe(v); });
+  }
+
   // Formulário de contacto: envia para o servidor (POST /contact; as mensagens
   // aparecem no backoffice). Se o envio falhar, abre o programa de email do visitante.
   var form = document.getElementById("contactForm");

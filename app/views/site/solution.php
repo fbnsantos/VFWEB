@@ -55,9 +55,7 @@ $img = $s['image'] !== '' ? asset_url($s['image']) : '';
 <section data-stagger="70">
   <div class="section-wrap">
     <div class="product-video reveal">
-      <video autoplay muted loop playsinline preload="metadata">
-        <source src="<?= e(asset_url($s['video'])) ?>" type="video/<?= str_ends_with($s['video'], '.webm') ? 'webm' : 'mp4' ?>">
-      </video>
+      <video muted loop playsinline preload="none" data-src="<?= e(asset_url($s['video'])) ?>"></video>
     </div>
   </div>
 </section>
