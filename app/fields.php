@@ -39,6 +39,9 @@ function render_field(string $key, array $spec, string $value): string
     $name = 'v[' . e($key) . ']';
     $hint = !empty($spec['hint']) ? '<p class="hint">' . e($spec['hint']) . '</p>' : '';
     $req = !empty($spec['required']) ? ' required' : '';
+    if (!empty($spec['count'])) {
+        $req .= ' data-count="' . (int) $spec['count'] . '"'; // contador de caracteres (títulos e descrições de SEO)
+    }
     $html = '';
 
     switch ($type) {

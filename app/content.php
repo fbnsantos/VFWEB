@@ -20,9 +20,9 @@ declare(strict_types=1);
  *                 image, video, icon.
  */
 
-function tf(string $label, string $default = '', string $type = 'text', string $hint = ''): array
+function tf(string $label, string $default = '', string $type = 'text', string $hint = '', int $count = 0): array
 {
-    return ['type' => $type, 'label' => $label, 'default' => $default, 'hint' => $hint];
+    return ['type' => $type, 'label' => $label, 'default' => $default, 'hint' => $hint, 'count' => $count];
 }
 
 /** Textos e imagens editáveis, agrupados por página e por secção. */
@@ -63,9 +63,32 @@ function text_pages(): array
                     'site.backer2_name' => tf('Apoio 2 (nome)', 'Universidade do Porto'),
                     'site.copyright' => tf('Direitos (depois do ano)', 'ViField. All rights reserved.'),
                 ],
-                'Pesquisa (Google)' => [
-                    'site.allow_indexing' => tf('Permitir que o Google indexe o site', '1', 'check', 'Desligue enquanto o site estiver em testes.'),
-                    'site.share_image' => tf('Imagem de partilha (redes sociais)', '/images/orioosv2-1.jpeg', 'image'),
+            ],
+        ],
+
+        'seo' => [
+            'label' => 'SEO (Google)',
+            'url' => '/',
+            'sections' => [
+                'Indexação e partilha' => [
+                    'site.allow_indexing' => tf('Permitir que o Google indexe o site', '1', 'check', 'Desligue enquanto o site estiver em testes: o robots.txt passa a bloquear tudo.'),
+                    'site.share_image' => tf('Imagem de partilha (LinkedIn, WhatsApp, redes sociais)', '/images/orioosv2-1.jpeg', 'image', 'Ideal: 1200×630 px.'),
+                ],
+                'Página inicial' => [
+                    'home.meta_title' => tf('Título', 'ViField — Autonomous Robots for Field Operations', 'text', 'Ideal: até 60 caracteres.', 60),
+                    'home.meta_description' => tf('Descrição', 'ViField designs and deploys modular robotic systems for continuous monitoring, surveillance, and data collection.', 'textarea', 'Ideal: 120 a 160 caracteres.', 160),
+                ],
+                'Página Orioos' => [
+                    'orioos.meta_title' => tf('Título', 'Orioos v2.0 — Autonomous Field Intelligence Robot | ViField', 'text', 'Ideal: até 60 caracteres.', 60),
+                    'orioos.meta_description' => tf('Descrição', "Orioos is ViField’s fully electric, modular autonomous ground robot for crop monitoring, field data collection, and perimeter surveillance in outdoor and mixed-terrain environments.", 'textarea', 'Ideal: 120 a 160 caracteres.', 160),
+                ],
+                'Página de notícias' => [
+                    'news.meta_title' => tf('Título', 'News & Press — ViField', 'text', 'Ideal: até 60 caracteres.', 60),
+                    'news.meta_description' => tf('Descrição', 'News, press coverage, and milestones from ViField — autonomous robots for field operations.', 'textarea', 'Ideal: 120 a 160 caracteres.', 160),
+                ],
+                'Google Search Console e Bing' => [
+                    'seo.google_verification' => tf('Código de verificação do Google', '', 'text', 'Cole o código, ou a meta tag inteira que o Search Console mostra (método «Etiqueta HTML»). Depois submeta o sitemap.xml no Search Console.'),
+                    'seo.bing_verification' => tf('Código de verificação do Bing', '', 'text', 'Opcional (Bing Webmaster Tools).'),
                 ],
             ],
         ],
@@ -74,10 +97,6 @@ function text_pages(): array
             'label' => 'Página inicial',
             'url' => '/',
             'sections' => [
-                'SEO' => [
-                    'home.meta_title' => tf('Título da página (separador / Google)', 'ViField — Autonomous Robots for Field Operations'),
-                    'home.meta_description' => tf('Descrição (Google)', 'ViField designs and deploys modular robotic systems for continuous monitoring, surveillance, and data collection.', 'textarea'),
-                ],
                 'Topo (hero)' => [
                     'home.hero_eyebrow' => tf('Etiqueta', 'Robotics for field operations'),
                     'home.hero_title' => tf('Título', 'Autonomous robots that *protect perimeters* and *empower farms*.', 'text', $em),
@@ -133,10 +152,6 @@ function text_pages(): array
             'label' => 'Página Orioos',
             'url' => '/orioos',
             'sections' => [
-                'SEO' => [
-                    'orioos.meta_title' => tf('Título da página (separador / Google)', 'Orioos v2.0 — Autonomous Field Intelligence Robot | ViField'),
-                    'orioos.meta_description' => tf('Descrição (Google)', "Orioos is ViField’s fully electric, modular autonomous ground robot for crop monitoring, field data collection, and perimeter surveillance in outdoor and mixed-terrain environments.", 'textarea'),
-                ],
                 'Topo (hero)' => [
                     'orioos.hero_eyebrow' => tf('Etiqueta', 'Autonomous field intelligence'),
                     'orioos.hero_title' => tf('Título', 'Orioos *v2.0®*', 'text', $em),
@@ -207,10 +222,6 @@ function text_pages(): array
             'label' => 'Página de notícias',
             'url' => '/news',
             'sections' => [
-                'SEO' => [
-                    'news.meta_title' => tf('Título da página (separador / Google)', 'News & Press — ViField'),
-                    'news.meta_description' => tf('Descrição (Google)', 'News, press coverage, and milestones from ViField — autonomous robots for field operations.', 'textarea'),
-                ],
                 'Topo (hero)' => [
                     'news.hero_eyebrow' => tf('Etiqueta', 'Newsroom'),
                     'news.hero_title' => tf('Título', 'News, press & *milestones*.', 'text', $em),

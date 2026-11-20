@@ -61,11 +61,6 @@ function not_found(): void
     render('site/404', ['page' => '404', 'title' => 'Page not found — ' . tx('site.name'), 'description' => '', 'noindex' => true]);
 }
 
-function indexing_allowed(): bool
-{
-    return tx('site.allow_indexing') === '1';
-}
-
 /** Prefixo dos links de âncora: vazio na página inicial, "/" nas outras. */
 function hp(string $page): string
 {

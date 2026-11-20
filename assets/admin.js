@@ -21,6 +21,20 @@
         }
     });
 
+    // Contadores de caracteres (títulos e descrições de SEO).
+    document.querySelectorAll('[data-count]').forEach((el) => {
+        const ideal = +el.dataset.count;
+        const out = document.createElement('span');
+        out.className = 'counter';
+        el.insertAdjacentElement('afterend', out);
+        const upd = () => {
+            out.textContent = `${el.value.length} / ${ideal} caracteres`;
+            out.classList.toggle('over', el.value.length > ideal);
+        };
+        el.addEventListener('input', upd);
+        upd();
+    });
+
     // Ícones: escolher um da lista preenche o código SVG e a pré-visualização.
     document.querySelectorAll('.iconfield').forEach((box) => {
         const select = box.querySelector('[data-icon-preset]');

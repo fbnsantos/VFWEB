@@ -20,6 +20,10 @@ $v = fn(string $file) => '?v=' . (is_file(ROOT . $file) ? filemtime(ROOT . $file
 <?php if ($noindex): ?><meta name="robots" content="noindex, nofollow">
 <?php else: ?><link rel="canonical" href="<?= e($canonical) ?>">
 <?php endif; ?>
+<?php if (tx('seo.google_verification') !== ''): ?><meta name="google-site-verification" content="<?= e(tx('seo.google_verification')) ?>">
+<?php endif; ?>
+<?php if (tx('seo.bing_verification') !== ''): ?><meta name="msvalidate.01" content="<?= e(tx('seo.bing_verification')) ?>">
+<?php endif; ?>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="<?= e(tx('site.name')) ?>">
 <meta property="og:title" content="<?= e($title) ?>">

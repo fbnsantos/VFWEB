@@ -1,10 +1,21 @@
 <?php
-$path = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
-$unread = unread_messages();
-$link = function (string $href, string $label, string $extra = '') use ($path) {
-    $active = $href === '/admin' ? $path === '/admin' : str_starts_with((string) $path, $href);
-    return '<a href="' . e($href) . '"' . ($active ? ' class="active"' : '') . '>' . e($label) . $extra . '</a>';
-};
+$path = (string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
+$unread = empty($bare) ? unread_messages() : 0;
+$matches = fn(string $href) => $path === $href || str_starts_with($path, $href . '/');
+
+// Entrada do menu ativa (a que contém o ecrã atual) e os seus separadores.
+$activeKey = null;
+$tabs = [];
+foreach (admin_nav() as $entries) {
+    foreach ($entries as $key => [$label, $items]) {
+        foreach ($items as [, $href]) {
+            if ($matches($href)) {
+                $activeKey = $key;
+                $tabs = $items;
+            }
+        }
+    }
+}
 $flash = flash();
 ?><!doctype html>
 <html lang="pt-PT">
@@ -22,16 +33,14 @@ $flash = flash();
     <aside class="side">
         <a class="logo" href="/admin"><?= e(tx('site.name')) ?> · backoffice</a>
         <nav>
-            <?= $link('/admin', 'Painel') ?>
-            <?= $link('/admin/stats', 'Visitas') ?>
-            <div class="group">Textos das páginas</div>
-            <?php foreach (text_pages() as $key => $p): ?><?= $link("/admin/texts/$key", $p['label']) ?><?php endforeach; ?>
-            <div class="group">Listas</div>
-            <?php foreach (collections() as $key => $c): ?><?= $link("/admin/c/$key", $c['label']) ?><?php endforeach; ?>
-            <div class="group">Mais</div>
-            <?= $link('/admin/messages', 'Mensagens', $unread ? ' <span class="count">' . $unread . '</span>' : '') ?>
-            <?= $link('/admin/media', 'Imagens e vídeos') ?>
-            <?= $link('/admin/update', 'Atualizar site (git)') ?>
+            <a href="/admin"<?= $path === '/admin' ? ' class="active"' : '' ?>>Painel</a>
+            <?php foreach (admin_nav() as $section => $entries): ?>
+                <div class="group"><?= e($section) ?></div>
+                <?php foreach ($entries as $key => [$label, $items]): ?>
+                    <a href="<?= e($items[0][1]) ?>"<?= $key === $activeKey ? ' class="active"' : '' ?>><?= e($label) ?><?php
+                        if ($key === 'messages' && $unread): ?> <span class="count"><?= $unread ?></span><?php endif; ?></a>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
         </nav>
         <div class="side-foot">
             <a href="/" target="_blank">Ver site ↗</a>
@@ -41,6 +50,13 @@ $flash = flash();
     </aside>
 <?php endif; ?>
 <main class="main">
+    <?php if (count($tabs) > 1): ?>
+        <nav class="tabs" aria-label="Secções desta página">
+            <?php foreach ($tabs as [$tabLabel, $tabHref]): ?>
+                <a href="<?= e($tabHref) ?>"<?= $matches($tabHref) ? ' class="active" aria-current="page"' : '' ?>><?= e($tabLabel) ?></a>
+            <?php endforeach; ?>
+        </nav>
+    <?php endif; ?>
     <?php if ($flash): ?><div class="flash <?= e($flash['type']) ?>"><?= e($flash['msg']) ?></div><?php endif; ?>
     <?= $content ?>
 </main>

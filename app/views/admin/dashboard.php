@@ -10,11 +10,12 @@
 
 <div class="grid2">
     <section class="card">
-        <h2>Editar textos</h2>
-        <p class="hint">Títulos, parágrafos, botões, contactos e imagens de cada página.</p>
+        <h2>Editar o site</h2>
+        <p class="hint">Cada página tem os seus textos e listas, em separadores.</p>
         <ul class="links">
-            <?php foreach (text_pages() as $key => $p): ?>
-                <li><a href="/admin/texts/<?= e($key) ?>"><?= e($p['label']) ?></a></li>
+            <?php foreach (admin_nav()['Conteúdo'] as [$label, $items]): ?>
+                <li><a href="<?= e($items[0][1]) ?>"><?= e($label) ?></a>
+                    <?php if (count($items) > 1): ?><span class="muted small">— <?= e(implode(', ', array_column($items, 0))) ?></span><?php endif; ?></li>
             <?php endforeach; ?>
         </ul>
     </section>

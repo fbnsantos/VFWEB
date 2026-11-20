@@ -132,6 +132,11 @@ function tx(string $key): string
     return (string) (text_default($key) ?? '');
 }
 
+function indexing_allowed(): bool
+{
+    return tx('site.allow_indexing') === '1';
+}
+
 /** Texto escapado; *palavra* passa a <em>palavra</em> (usado nos títulos com destaque). */
 function tx_html(string $key): string
 {

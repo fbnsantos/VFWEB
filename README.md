@@ -34,8 +34,9 @@ Abrir http://localhost:8080/admin: na primeira vez pede a `setup_key` para criar
 
 | Secção | O quê |
 |---|---|
-| **Textos das páginas** | Geral (nome, logótipos, contactos, rodapé, **subsistemas do menu**, Google), Página inicial, Página Orioos, Página de notícias: títulos, parágrafos, botões, imagens e vídeo. Nos títulos, `*palavra*` aparece destacada a verde. |
+| **Textos das páginas** | Geral (nome, logótipos, contactos, rodapé, **subsistemas do menu**), Página inicial, Página Orioos, Página de notícias: títulos, parágrafos, botões, imagens e vídeo. Nos títulos, `*palavra*` aparece destacada a verde. |
 | **Listas** | Notícias, Equipa, Tecnologia, Setores, e do Orioos: métricas, capacidades (Agricultura/Vigilância), especificações, sensores, plataforma, requisitos. Criar, editar, esconder («Visível»), apagar e reordenar (↑ ↓). |
+| **SEO (Google)** | Secção só de SEO (`/admin/seo`): título e descrição de cada página com contador e pré-visualização do resultado no Google, indexação ligada/desligada, imagem de partilha, códigos do Google Search Console e Bing, e avisos (https, tamanhos, imagens sem texto alternativo). `robots.txt` e `sitemap.xml` são automáticos. |
 | **Visitas** | Estatísticas próprias, sem cookies nem serviços externos e sem guardar IPs: visualizações, visitantes únicos, páginas mais vistas, origem (Google, LinkedIn, IA…), países (base DB-IP local, botão no ecrã), dispositivos, robôs e 404. Visitas do admin e robôs não contam. Dados com mais de 13 meses são apagados. |
 | **Mensagens** | O formulário de contacto guarda cada mensagem aqui (e envia cópia por email se o servidor tiver `mail()`). Limite de 5 por hora por visitante e campo-isco anti-spam. |
 | **Imagens e vídeos** | Biblioteca. Cada campo de imagem/vídeo também aceita envio direto ou «Biblioteca». |

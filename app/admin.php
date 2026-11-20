@@ -37,6 +37,8 @@ function route_admin(string $sub, string $method): void
         admin_texts($m[1], $method);
     } elseif (preg_match('#^/c/([a-z]+)(?:/(new|\d+)(?:/(delete|move))?)?$#', $sub, $m) && isset(collections()[$m[1]])) {
         admin_collection($m[1], $m[2] ?? '', $m[3] ?? '', $method);
+    } elseif ($sub === '/seo') {
+        redirect('/admin/texts/seo');
     } elseif ($sub === '/stats') {
         $days = (int) ($_GET['dias'] ?? 30);
         $days = in_array($days, [7, 30, 90, 365], true) ? $days : 30;
@@ -80,6 +82,33 @@ function route_admin(string $sub, string $method): void
     }
 }
 
+/**
+ * Menu do backoffice: poucas entradas, uma por página do site. Cada uma agrupa os separadores (tabs)
+ * que aparecem no topo do ecrã: os textos da página e as listas que lhe pertencem.
+ * Estrutura: secção => [entrada => [rótulo, [[rótulo do separador, endereço], …]]].
+ */
+function admin_nav(): array
+{
+    return [
+        'Conteúdo' => [
+            'home' => ['Página inicial', [['Textos', '/admin/texts/home'], ['Tecnologia', '/admin/c/tech'], ['Setores', '/admin/c/sectors'], ['Equipa', '/admin/c/team']]],
+            'orioos' => ['Orioos', [['Textos', '/admin/texts/orioos'], ['Métricas', '/admin/c/metrics'], ['Capacidades', '/admin/c/caps'],
+                ['Especificações', '/admin/c/specs'], ['Sensores', '/admin/c/sensors'], ['Plataforma', '/admin/c/platform'], ['Requisitos', '/admin/c/reqs']]],
+            'news' => ['Notícias', [['Notícias', '/admin/c/news'], ['Textos da página', '/admin/texts/news']]],
+            'site' => ['Contactos e rodapé', [['Contactos e rodapé', '/admin/texts/site']]],
+        ],
+        'Google' => [
+            'seo' => ['SEO', [['SEO', '/admin/texts/seo']]],
+            'stats' => ['Visitas', [['Visitas', '/admin/stats']]],
+        ],
+        'Mais' => [
+            'messages' => ['Mensagens', [['Mensagens', '/admin/messages']]],
+            'media' => ['Imagens e vídeos', [['Imagens e vídeos', '/admin/media']]],
+            'update' => ['Atualizar site', [['Atualizar site (git)', '/admin/update']]],
+        ],
+    ];
+}
+
 function admin_render(string $view, array $vars = []): void
 {
     render("admin/$view", $vars, 'admin/layout');
@@ -104,6 +133,15 @@ function admin_texts(string $pageKey, string $method): void
             flash($ex->getMessage(), 'error');
             redirect("/admin/texts/$pageKey");
         }
+        // Aceita a meta tag inteira colada do Search Console / Bing e guarda só o código.
+        foreach (['seo.google_verification', 'seo.bing_verification'] as $k) {
+            if (isset($values[$k]) && preg_match('/content="([^"]+)"/', $values[$k], $m)) {
+                $values[$k] = $m[1];
+            }
+            if (isset($values[$k])) {
+                $values[$k] = preg_replace('/[^A-Za-z0-9_\-=]/', '', $values[$k]) ?? '';
+            }
+        }
         $pdo = db();
         $pdo->beginTransaction();
         $st = $pdo->prepare('INSERT INTO settings (name, value) VALUES (?, ?) ON CONFLICT(name) DO UPDATE SET value = excluded.value');
@@ -115,7 +153,49 @@ function admin_texts(string $pageKey, string $method): void
         flash('Guardado. As alterações já estão no site.');
         redirect("/admin/texts/$pageKey");
     }
-    admin_render('texts', ['title' => $def['label'], 'pageKey' => $pageKey, 'def' => $def]);
+    admin_render('texts', ['title' => $def['label'], 'pageKey' => $pageKey, 'def' => $def,
+        'checks' => $pageKey === 'seo' ? seo_checks() : []]);
+}
+
+/** Avisos de SEO: [tipo (warn|info|good), mensagem]. */
+function seo_checks(): array
+{
+    $c = [];
+    if (!indexing_allowed()) {
+        $c[] = ['warn', 'A indexação está desligada: o robots.txt bloqueia o Google. Ligue-a quando o site estiver pronto.'];
+    } else {
+        $c[] = ['good', 'Indexação ligada: o Google pode indexar o site. Sitemap: ' . abs_url('/sitemap.xml')];
+    }
+    if (str_contains(base_url(), 'localhost') || str_contains(base_url(), '127.0.0.1')) {
+        $c[] = ['warn', 'O URL do site é ' . base_url() . '. Em produção, defina base_url em config.php (ex.: https://vifield.com).'];
+    } elseif (!str_starts_with(base_url(), 'https://')) {
+        $c[] = ['warn', 'O site não usa https no base_url (' . base_url() . '). O Google prefere https.'];
+    }
+    foreach (['home' => 'Página inicial', 'orioos' => 'Página Orioos', 'news' => 'Página de notícias'] as $p => $label) {
+        $t = mb_strlen(tx("$p.meta_title"));
+        $d = mb_strlen(tx("$p.meta_description"));
+        if ($t === 0 || $t > 60) {
+            $c[] = ['warn', "$label: título " . ($t === 0 ? 'vazio' : "com $t caracteres (o Google corta por volta dos 60)") . '.'];
+        }
+        if ($d < 70 || $d > 160) {
+            $c[] = ['warn', "$label: descrição com $d caracteres (ideal 120 a 160)."];
+        }
+    }
+    if (tx('seo.google_verification') === '') {
+        $c[] = ['info', 'Falta o código de verificação do Google Search Console (abaixo). Depois submeta o sitemap.xml.'];
+    }
+    if (tx('site.share_image') === '') {
+        $c[] = ['info', 'Defina uma imagem de partilha: aparece nos links partilhados no LinkedIn e no WhatsApp.'];
+    }
+    $n = (int) db()->query("SELECT COUNT(*) FROM media WHERE mime LIKE 'image/%' AND alt = ''")->fetchColumn();
+    if ($n) {
+        $c[] = ['info', "$n imagem(ns) sem texto alternativo na biblioteca (Imagens e vídeos)."];
+    }
+    $n = (int) db()->query("SELECT COUNT(*) FROM c_news WHERE visible = 1 AND url = ''")->fetchColumn();
+    if ($n) {
+        $c[] = ['info', "$n notícia(s) sem link."];
+    }
+    return $c;
 }
 
 /* ---------- Listas (coleções) ---------- */
