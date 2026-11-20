@@ -22,7 +22,7 @@ $plural = ['press' => 'Press', 'announcement' => 'Announcements', 'event' => 'Ev
     <div class="section-label reveal"><?= e(tx('news.featured_label')) ?></div>
     <a class="featured-card reveal" href="<?= e($featured['url'] ?: '#') ?>">
       <div class="featured-media"><span class="featured-badge"><?= e($featured['badge'] ?: 'Featured') ?></span>
-        <img src="<?= e(asset_url($featured['image'] ?: '/images/orioosv2-1.jpeg')) ?>" alt="<?= e($featured['image_alt'] ?: $featured['title']) ?>"></div>
+        <img src="<?= e(news_image($featured)) ?>" alt="<?= e($featured['image_alt'] ?: $featured['title']) ?>"></div>
       <div class="featured-info"><div class="featured-meta">
         <span class="tag"><?= e(news_label($featured['category'])) ?></span><span class="meta-date"><?= e(news_date($featured['date'])) ?></span></div>
         <h2><?= e($featured['title']) ?></h2><p><?= e($featured['excerpt']) ?></p>
@@ -55,6 +55,7 @@ $plural = ['press' => 'Press', 'announcement' => 'Announcements', 'event' => 'Ev
     <div class="news-grid" id="newsGrid" data-stagger="60">
 <?php foreach ($items as $n): ?>
       <a class="news-card reveal" data-category="<?= e($n['category']) ?>" href="<?= e($n['url'] ?: '#') ?>">
+        <div class="news-card-media"><img src="<?= e(news_image($n)) ?>" alt="<?= e($n['image_alt'] ?: $n['title']) ?>" loading="lazy"></div>
         <div class="news-card-top"><span class="tag"><?= e(news_label($n['category'])) ?></span>
           <span class="meta-date"><?= e(news_date($n['date'])) ?></span></div>
         <h3><?= e($n['title']) ?></h3>

@@ -80,6 +80,22 @@ function news_date(string $iso): string
     return $t ? date('j M Y', $t) : $iso;
 }
 
+/** Imagem da notícia, ou a imagem por omissão (os cartões têm sempre imagem). */
+function news_image(array $n): string
+{
+    $img = (string) ($n['image'] ?? '');
+    if ($img === '') {
+        $img = tx('news.default_image') ?: '/images/orioosv2-1.jpeg';
+    }
+    return asset_url($img);
+}
+
+/** Últimas notícias visíveis, para o menu do topo. */
+function latest_news(int $limit = 4): array
+{
+    return array_slice(col_items('news'), 0, $limit);
+}
+
 function news_label(string $category): string
 {
     return collections()['news']['fields']['category']['options'][$category] ?? $category;

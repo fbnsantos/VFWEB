@@ -70,7 +70,18 @@ $v = fn(string $file) => '?v=' . (is_file(ROOT . $file) ? filemtime(ROOT . $file
       </div>
     </div>
     <a href="<?= $h ?>#team">Team</a>
-    <a href="/news"<?= $page === 'news' ? ' aria-current="page"' : '' ?>>News</a>
+    <div class="nav-item">
+      <a href="/news"<?= $page === 'news' ? ' aria-current="page"' : '' ?>>News</a>
+      <div class="nav-dropdown nav-dropdown-news" aria-label="Latest news">
+        <a href="/news"><strong>All news →</strong></a>
+<?php foreach (latest_news(4) as $n): ?>
+        <a class="nav-news-link" href="<?= e($n['url'] ?: '/news') ?>"<?= preg_match('#^https?://#i', (string) $n['url']) ? ' target="_blank" rel="noopener"' : '' ?>>
+          <img src="<?= e(news_image($n)) ?>" alt="" loading="lazy">
+          <span><small><?= e(news_date($n['date'])) ?></small><?= e($n['title']) ?></span>
+        </a>
+<?php endforeach; ?>
+      </div>
+    </div>
   </div>
   <a class="nav-cta" href="<?= $contactHref ?>">Contact us</a>
 </nav>
