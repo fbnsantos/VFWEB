@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViField — Autonomous Robots for Field Operations</title>
+<meta name="description" content="ViField designs and deploys modular robotic systems for continuous monitoring, surveillance, and data collection.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<!-- ═══════ COMPONENTE PARTILHADO: cabeçalho / menu ═══════
+     Igual em todas as páginas, com pequenas diferenças nos links (ver LEIA-ME.md).
+     No back office deve passar a ser um único bloco reutilizável. -->
+<nav>
+  <a class="nav-logo" href="#top">
+    <img src="uploads/ViField6_original.png" alt="ViField">
+    <span class="nav-wordmark">ViField</span>
+  </a>
+  <div class="nav-links">
+    <a href="#technology">Technology</a>
+    <a href="#industries">Industries</a>
+    <div class="nav-item">
+      <a href="#solutions">Solutions</a>
+      <div class="nav-dropdown" aria-label="Solutions submenu">
+        <a href="orioos.html">Orioos</a>
+      </div>
+    </div>
+    <a href="#team">Team</a>
+    <a href="news.html">News</a>
+  </div>
+  <a class="nav-cta" href="#contact">Contact us</a>
+</nav>
+<!-- ═══════ FIM: cabeçalho ═══════ -->
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-eyebrow">Robotics for field operations</div>
+  <h1 class="hero-title">Autonomous robots that <em>protect perimeters</em> and <em>empower farms</em>.</h1>
+  <p class="hero-model">Field-deployed · Modular · Autonomous</p>
+  <p class="hero-desc">
+    ViField designs and deploys modular robotic systems for continuous monitoring, surveillance, and data collection — built for industrial sites, critical infrastructure, and precision agriculture.
+  </p>
+  <div class="hero-cta">
+    <a class="btn btn-primary btn-lg" href="#solutions">Our solutions</a>
+    <a class="btn btn-ghost btn-lg" href="#contact">Get in touch</a>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── TECHNOLOGY ── -->
+<section id="technology">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">Technology</div>
+      <h2 class="section-title">Technology that performs in the field.</h2>
+      <p class="section-desc">A modular stack combining perception, autonomy, and edge compute — built for reliable operation in complex environments.</p>
+    </div>
+
+    <!-- CONTEÚDO: cartões de tecnologia (lista repetível: ícone, título, texto) -->
+    <div class="tech-grid" data-stagger="70">
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round">
+            <path d="M9 4.5C7.343 4.5 6 5.843 6 7.5v9c0 1.657 1.343 3 3 3"/>
+            <path d="M15 4.5c1.657 0 3 1.343 3 3v9c0 1.657-1.343 3-3 3"/>
+            <path d="M9 7h6M9 11h6M9 15h6"/>
+          </svg>
+        </div>
+        <h3>Modular Payloads</h3>
+        <p>Swap sensors to match the mission: monitoring, inspection, mapping, or anomaly detection.</p>
+      </div>
+
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3>Computer Vision</h3>
+        <p>Multi-spectral perception for object recognition, spatial mapping, and environment understanding.</p>
+      </div>
+
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round">
+            <path d="M9 3v2M15 3v2M9 19v2M15 19v2M3 9h2M3 15h2M19 9h2M19 15h2"/>
+            <rect x="7" y="7" width="10" height="10" rx="1"/>
+            <rect x="10" y="10" width="4" height="4"/>
+          </svg>
+        </div>
+        <h3>Edge Processing</h3>
+        <p>On-device computation enabling sub-millisecond response times without cloud dependency.</p>
+      </div>
+
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 3 14h7l-1 8 12-14h-7l-1-6Z"/>
+          </svg>
+        </div>
+        <h3>Dynamic Motion</h3>
+        <p>Advanced actuators and control systems delivering stable mobility and navigation in the field.</p>
+      </div>
+
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 20 6v7c0 5-3.5 9.4-8 9.4S4 18 4 13V6l8-4Z"/>
+          </svg>
+        </div>
+        <h3>Safety Systems</h3>
+        <p>Multi-layered safety protocols ensuring reliable operation alongside people and infrastructure.</p>
+      </div>
+
+      <div class="tech-card reveal">
+        <div class="tech-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round">
+            <path d="M12 20a8 8 0 1 1 8-8"/>
+            <path d="M12 12l5-3"/>
+            <path d="M4 20h16"/>
+          </svg>
+        </div>
+        <h3>Performance Analytics</h3>
+        <p>Continuous monitoring and optimisation of robotic systems across entire fleet deployments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ── -->
+<section id="industries">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">Industries</div>
+      <h2 class="section-title">Industries we operate in.</h2>
+      <p class="section-desc">Built for the field. Proven in demanding environments — industrial yards, critical infrastructure, and precision agriculture.</p>
+    </div>
+
+    <!-- CONTEÚDO: setores (lista repetível: vídeo, rótulo, título, texto, etiquetas) -->
+    <div class="industry-list">
+
+      <!-- Agriculture -->
+      <div class="industry-row reveal">
+        <div class="industry-media">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="videos/farm.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="industry-text">
+          <div class="section-label">Agriculture</div>
+          <h3>Farms &amp; Permanent Crops</h3>
+          <p>Crop scouting, inspection, and environmental sensing for vineyards, orchards, and open-field operations. Turn observations into decisions.</p>
+          <div class="pill-row">
+            <span class="pill">Scouting &amp; phenotyping</span>
+            <span class="pill">Yield Assessment</span>
+            <span class="pill">Decision-ready insights</span>
+          </div>
+          <div class="industry-cta">
+            <a class="btn btn-primary" href="#contact">Request a demo</a>
+            <a class="btn btn-ghost" href="#solutions">See solutions</a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Industrial & Logistics -->
+      <div class="industry-row reverse reveal">
+        <div class="industry-media">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="videos/depot.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="industry-text">
+          <div class="section-label">Industrial &amp; Logistics</div>
+          <h3>Industrial &amp; Logistics Sites</h3>
+          <p>Persistent monitoring across large outdoor areas — warehouse yards, depots, and storage zones. Detect events early and integrate with your security workflows.</p>
+          <div class="pill-row">
+            <span class="pill">Autonomous patrol</span>
+            <span class="pill">Night operations</span>
+            <span class="pill">Alert &amp; evidence capture</span>
+          </div>
+          <div class="industry-cta">
+            <a class="btn btn-primary" href="#contact">Request a demo</a>
+            <a class="btn btn-ghost" href="#solutions">See solutions</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Critical Infrastructure -->
+      <div class="industry-row reveal">
+        <div class="industry-media">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="videos/industry.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="industry-text">
+          <div class="section-label">Critical Infrastructure</div>
+          <h3>Critical Infrastructure</h3>
+          <p>Secure the perimeter of energy, water, telecom, and sensitive facilities. Reliable autonomy designed for high-consequence environments.</p>
+          <div class="pill-row">
+            <span class="pill">Perimeter coverage</span>
+            <span class="pill">Multi-sensor perception</span>
+            <span class="pill">Integration-ready</span>
+          </div>
+          <div class="industry-cta">
+            <a class="btn btn-primary" href="#contact">Request a demo</a>
+            <a class="btn btn-ghost" href="#solutions">See solutions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS ── -->
+<section id="solutions">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">Solutions</div>
+      <h2 class="section-title">Built for real-world operations.</h2>
+      <p class="section-desc">A growing set of field-ready products and deployments.</p>
+    </div>
+
+    <!-- CONTEÚDO: produto em destaque (imagem, nome, descrição, lista de características, link) -->
+    <div class="product-card reveal">
+      <div class="product-media">
+        <img src="images/orioosv2-1.jpeg" alt="Orioos v2.0 robot">
+      </div>
+      <div class="product-info">
+        <div class="section-label">Autonomous robot</div>
+        <div class="product-name">Orioos v2.0®</div>
+        <p class="product-desc">
+          ORIOOS is a fully electric, modular, and autonomous ground robot designed for continuous monitoring in outdoor and mixed-terrain environments.
+        </p>
+        <ul class="product-specs">
+          <li>
+            <div class="spec-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="var(--vf-green-600)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 5l2.5 2.5 4.5-4"/>
+              </svg>
+            </div>
+            Autonomous navigation &amp; patrol routes
+          </li>
+          <li>
+            <div class="spec-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="var(--vf-green-600)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 5l2.5 2.5 4.5-4"/>
+              </svg>
+            </div>
+            Multi-sensor payload support
+          </li>
+          <li>
+            <div class="spec-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="var(--vf-green-600)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 5l2.5 2.5 4.5-4"/>
+              </svg>
+            </div>
+            24/7 continuous operation
+          </li>
+          <li>
+            <div class="spec-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="var(--vf-green-600)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1.5 5l2.5 2.5 4.5-4"/>
+              </svg>
+            </div>
+            Edge AI &amp; real-time alerting
+          </li>
+        </ul>
+        <div>
+          <a class="btn btn-primary" href="orioos.html">Learn more about Orioos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section id="team">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">Team</div>
+      <h2 class="section-title">Meet the team.</h2>
+      <p class="section-desc">A multidisciplinary group bringing together robotics, hardware, software, electrical engineering, and agronomic expertise.</p>
+    </div>
+
+    <!-- CONTEÚDO: equipa (lista repetível: foto, nome, biografia) -->
+    <div class="team-grid" data-stagger="70">
+      <article class="team-card reveal" tabindex="0">
+        <img src="images/aa.png" alt="André Aguiar">
+        <div class="team-overlay">
+          <div class="team-name">André Aguiar</div>
+          <p class="team-bio">PhD in Electrical Engineering from UTAD. Expertise in Robotics Navigation, SLAM, and Computer Vision. Participated in +15 National and European projects in agricultural robotics.</p>
+        </div>
+      </article>
+
+      <article class="team-card reveal" tabindex="0">
+        <img src="images/fs.png" alt="Filipe Santos">
+        <div class="team-overlay">
+          <div class="team-name">Filipe Santos</div>
+          <p class="team-bio">PhD in Electrical and Computer Engineering from FEUP. Manager of TRIBE LAB@INESCTEC. Assistant Professor at FEUP. +20 years of experience in R&amp;D in robotics.</p>
+        </div>
+      </article>
+
+      <article class="team-card reveal" tabindex="0">
+        <img src="images/db.png" alt="Domingos Bento">
+        <div class="team-overlay">
+          <div class="team-name">Domingos Bento</div>
+          <p class="team-bio">M.Sc. in Electrical and Computer Engineering from IST. Expertise in Embedded Systems and Mechatronics. Background in startups and technology ventures.</p>
+        </div>
+      </article>
+
+      <article class="team-card reveal" tabindex="0">
+        <img src="images/gm.png" alt="Germano Moreira">
+        <div class="team-overlay">
+          <div class="team-name">Germano Moreira</div>
+          <p class="team-bio">PhD candidate in Agricultural Sciences, FCUP. Expertise in Computer Vision, Crop Monitoring and Phenotyping. Former Invited Auxiliary Professor at FCUP.</p>
+        </div>
+      </article>
+
+      <article class="team-card reveal" tabindex="0">
+        <img src="images/ab.png" alt="André Baltazar">
+        <div class="team-overlay">
+          <div class="team-name">André Baltazar</div>
+          <p class="team-bio">PhD in Electrical Engineering from UTAD. Expertise in Mechatronics and Advanced Mechanics. Invited Auxiliary Professor at FEUP. Participated in +10 R&amp;D projects.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="spinoff-note reveal">
+      <div class="spinoff-note-text">
+        <div class="section-label" style="margin-bottom: var(--sp-2);">Research origins</div>
+        <p>ViField is a spin-off born from research conducted at INESC TEC and the University of Porto. Built on years of academic excellence, we bring advanced robotics from the lab into real-world field operations.</p>
+      </div>
+      <div class="spinoff-logos">
+        <img src="images/inesctec.png" alt="INESC TEC">
+        <img src="images/uporto.png" alt="Universidade do Porto">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Ready to automate?</h2>
+        <p class="section-desc">Tell us about your challenge. Our team will design a solution tailored to your operations.</p>
+
+        <div class="contact-detail">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-val"><a href="mailto:info@vifield.com">info@vifield.com</a></div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Address</div>
+              <div class="contact-item-val">Rua de Godim, nº 389, 4300-394<br>Porto, Portugal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-card reveal">
+        <div class="form-title">Send us a message</div>
+        <div class="form-subtitle">We'll get back to you within 24h</div>
+        <!-- FORMULÁRIO: atualmente abre o programa de email do visitante (mailto, em js/main.js).
+             Se o back office for receber as mensagens, substituir por envio para o servidor. -->
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Name</label>
+              <input class="form-input" id="name" name="name" type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" id="email" name="email" type="email" placeholder="you@company.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+          </div>
+          <button class="submit-btn" type="submit">Send Message →</button>
+          <p class="form-note">Or email us directly at <a href="mailto:info@vifield.com">info@vifield.com</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ COMPONENTE PARTILHADO: rodapé ═══════
+     Igual em todas as páginas. No back office deve ser um único bloco reutilizável. -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="uploads/ViField6_white.png" alt="ViField">
+          <span class="footer-brand-name">ViField</span>
+        </div>
+        <p class="footer-tagline">Modular robotic systems for continuous monitoring, surveillance, and data collection.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="https://linkedin.com/company/vifield" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2Z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <nav>
+          <a href="#top">Home</a>
+          <a href="#technology">Technology</a>
+          <a href="#industries">Industries</a>
+          <a href="#solutions">Solutions</a>
+          <a href="#team">Team</a>
+          <a href="news.html">News</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <nav>
+          <a href="mailto:info@vifield.com">info@vifield.com</a>
+          <span style="font-size:13px; color: oklch(62% 0.07 158); line-height:1.65;">Rua de Godim, nº 389<br>4300-394 Porto, Portugal</span>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Backed by</h4>
+        <div style="display:flex; flex-direction:column; gap: var(--sp-4); margin-top: var(--sp-2);">
+          <img src="images/inesctec.png" alt="INESC TEC" style="height:26px; width:auto; object-fit:contain; opacity:.6; filter:brightness(0) invert(1);">
+          <img src="images/uporto.png" alt="Universidade do Porto" style="height:24px; width:auto; object-fit:contain; opacity:.6; filter:brightness(0) invert(1);">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© <span id="year"></span> ViField. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#top">Back to top</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ═══════ FIM: rodapé ═══════ -->
+
+<script src="js/main.js"></script>
+</body>
+</html>

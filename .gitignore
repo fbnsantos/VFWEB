@@ -1,0 +1,18 @@
+# Configuração e segredos (nunca no git)
+config.php
+.env
+
+# Dados do site: base de dados SQLite, logs de deploy
+data/*
+!data/.htaccess
+!data/.gitkeep
+
+# Ficheiros enviados no backoffice
+uploads/*
+!uploads/.htaccess
+
+.DS_Store
+.claude/
+
+# Vídeos grandes: ficam só no servidor (enviados no backoffice)
+videos/*.mp4

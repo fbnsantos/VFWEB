@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orioos v2.0 — Autonomous Field Intelligence Robot | ViField</title>
+<meta name="description" content="Orioos is ViField’s fully electric, modular autonomous ground robot for crop monitoring, field data collection, and perimeter surveillance in outdoor and mixed-terrain environments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/orioos.css">
+</head>
+<body>
+
+<!-- ═══════ COMPONENTE PARTILHADO: cabeçalho / menu ═══════
+     Igual em todas as páginas, com pequenas diferenças nos links (ver LEIA-ME.md).
+     No back office deve passar a ser um único bloco reutilizável. -->
+<nav>
+  <a class="nav-logo" href="index.html#top">
+    <img src="uploads/ViField6_original.png" alt="ViField">
+    <span class="nav-wordmark">ViField</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#technology">Technology</a>
+    <a href="index.html#industries">Industries</a>
+    <div class="nav-item">
+      <a href="index.html#solutions">Solutions</a>
+      <div class="nav-dropdown" aria-label="Solutions submenu">
+        <a href="orioos.html" aria-current="page">Orioos</a>
+      </div>
+    </div>
+    <a href="index.html#team">Team</a>
+    <a href="news.html">News</a>
+  </div>
+  <a class="nav-cta" href="#contact">Contact us</a>
+</nav>
+<!-- ═══════ FIM: cabeçalho ═══════ -->
+
+<!-- ── HERO ── -->
+<header class="product-hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="product-hero-inner">
+    <div class="reveal">
+      <div class="hero-eyebrow">Autonomous field intelligence</div>
+      <h1 class="product-title">Orioos <em>v2.0®</em></h1>
+      <p class="product-subtitle">
+        A fully electric, modular autonomous ground robot for perimeter surveillance and crop monitoring across outdoor and mixed-terrain environments.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#contact">Request a demo</a>
+        <a class="btn btn-ghost btn-lg" href="#specifications">View specifications</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <img src="images/orioosv2-1.jpeg" alt="Orioos v2.0 autonomous robot">
+    </div>
+  </div>
+</header>
+
+<!-- ── METRICS ── -->
+<section class="metrics-strip">
+  <!-- CONTEÚDO: métricas (lista repetível: valor, legenda) -->
+  <div class="metrics-inner" data-stagger="70">
+    <div class="metric reveal">
+      <div class="metric-value">24/7</div>
+      <div class="metric-label">Autonomous patrol capability</div>
+    </div>
+    <div class="metric reveal">
+      <div class="metric-value">8h</div>
+      <div class="metric-label">Typical autonomy per charge</div>
+    </div>
+    <div class="metric reveal">
+      <div class="metric-value">&lt;1s</div>
+      <div class="metric-label">Alert and stream latency</div>
+    </div>
+    <div class="metric reveal">
+      <div class="metric-value">~70kg</div>
+      <div class="metric-label">Platform weight</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCT VIDEO ── -->
+<section id="orioos-video" data-stagger="70">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">In action</div>
+      <h2 class="section-title">See Orioos in the field.</h2>
+      <p class="section-desc">
+        A short silent view of the platform’s movement, form factor, and field-ready design.
+      </p>
+    </div>
+
+    <div class="product-video reveal">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="videos/orioos_360.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ── OVERVIEW ── -->
+<section>
+  <div class="section-wrap">
+    <div class="two-col">
+      <div class="reveal">
+        <div class="section-label">Overview</div>
+        <h2 class="section-title">One autonomous platform for security patrols and precision agriculture.</h2>
+      </div>
+      <div class="copy-block reveal">
+        <p>
+          Orioos performs autonomous missions along configurable routes, combining reliable field mobility with perception, edge processing, and cloud connectivity.
+        </p>
+        <p>
+          In surveillance scenarios, it monitors perimeters, detects intrusions, and reports operational events. In agricultural scenarios, the same platform can support crop monitoring, fruit counting for yield assessment, disease symptom detection, and field data collection.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CAPABILITIES ── -->
+<section>
+  <div class="section-wrap">
+    <div class="capability-header reveal">
+      <div>
+        <div class="section-label">Capabilities</div>
+        <h2 class="section-title">Switch between agriculture and surveillance missions.</h2>
+        <p class="section-desc">
+          Orioos uses the same autonomous field platform for two high-value operating modes: precision agriculture and perimeter security.
+        </p>
+      </div>
+
+      <div class="capability-toggle" role="tablist" aria-label="Capability mode">
+        <button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="agriculture-panel" data-capability="agriculture">Agriculture</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="surveillance-panel" data-capability="surveillance">Surveillance</button>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO: capacidades, um painel por modo (lista repetível: ícone, título, texto) -->
+    <div class="capability-panel is-active" id="agriculture-panel" role="tabpanel" data-panel="agriculture">
+      <div class="feature-grid" data-stagger="70">
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22c4-4 8-8 8-13a8 8 0 0 0-16 0c0 5 4 9 8 13Z"/>
+              <path d="M9 9c2.5 0 4.5 2 4.5 4.5"/>
+            </svg>
+          </div>
+          <h3>Crop monitoring</h3>
+          <p>Run repeated scouting missions to collect visual field data across rows, orchards, vineyards, and other permanent crops.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="12" r="3"/>
+              <circle cx="16" cy="12" r="3"/>
+              <path d="M8 9V6m8 3V6m-4 9v3"/>
+            </svg>
+          </div>
+          <h3>Yield assessment</h3>
+          <p>Use image capture and computer vision workflows to count fruits and estimate production potential over time.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c4 4 7 8 7 13a7 7 0 0 1-14 0c0-5 3-9 7-13Z"/>
+              <path d="M12 8v8m-4-4h8"/>
+            </svg>
+          </div>
+          <h3>Disease symptom detection</h3>
+          <p>Support early identification of visible plant stress, disease symptoms, and anomalies for faster agronomic decisions.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19c4-8 12-8 16 0"/>
+              <path d="M6 15c3-5 9-5 12 0"/>
+              <path d="M12 3v18"/>
+            </svg>
+          </div>
+          <h3>Phenotyping support</h3>
+          <p>Collect repeatable visual observations to support crop development tracking and field trials.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20a8 8 0 1 1 8-8"/>
+              <path d="M12 12l4-2"/>
+              <path d="M4 20h16"/>
+            </svg>
+          </div>
+          <h3>Field data collection</h3>
+          <p>Gather geo-referenced imagery, timestamps, route data, and inspection records across the same field over multiple missions.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 19V5"/>
+              <path d="M5 19h14"/>
+              <path d="M9 15l3-4 3 2 4-7"/>
+            </svg>
+          </div>
+          <h3>Decision-ready insights</h3>
+          <p>Transform field observations into practical outputs for scouting, intervention planning, reporting, and crop management.</p>
+        </div>
+      </div>
+
+      <div class="use-case-note reveal">
+        Agriculture mode is designed for permanent crops, such as vineyards or orchards, and open-field operations where regular autonomous observation can support better crop decisions.
+      </div>
+    </div>
+
+
+<div class="capability-panel" id="surveillance-panel" role="tabpanel" data-panel="surveillance">
+      <div class="feature-grid" data-stagger="70">
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 11l19-8-8 19-2-8-9-3Z"/>
+            </svg>
+          </div>
+          <h3>Autonomous patrol routes</h3>
+          <p>Configure patrol paths and schedules remotely for repeatable perimeter coverage across large outdoor sites.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 20 6v7c0 5-3.5 9.4-8 9.4S4 18 4 13V6l8-4Z"/>
+            </svg>
+          </div>
+          <h3>Intrusion detection</h3>
+          <p>Detect movement anomalies and perimeter events, with alerts transmitted to the ViField cloud platform.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 10 20 7v10l-5-3"/>
+              <rect x="4" y="6" width="11" height="12" rx="2"/>
+            </svg>
+          </div>
+          <h3>Live video and evidence</h3>
+          <p>Access live video, event-triggered recordings, still frames, and patrol logs from a web-based dashboard.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20a8 8 0 1 1 8-8"/>
+              <path d="M12 12l5-3"/>
+              <path d="M4 20h16"/>
+            </svg>
+          </div>
+          <h3>Fleet monitoring</h3>
+          <p>Track robot status, battery level, position, and mission progress in real time through the ViField platform.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M2 12h20"/>
+              <path d="M5 5c4 2 10 2 14 0M5 19c4-2 10-2 14 0"/>
+            </svg>
+          </div>
+          <h3>Mixed-terrain operation</h3>
+          <p>Designed for unstructured outdoor routes, including uneven ground, narrow paths, vegetation, and site perimeters.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3v2M15 3v2M9 19v2M15 19v2M3 9h2M3 15h2M19 9h2M19 15h2"/>
+              <rect x="7" y="7" width="10" height="10" rx="1"/>
+            </svg>
+          </div>
+          <h3>Edge AI processing</h3>
+          <p>On-device AI inference supports detection, classification, navigation, and real-time processing.</p>
+        </div>
+      </div>
+
+      <div class="use-case-note reveal">
+        Surveillance mode is designed for logistics sites, industrial yards, critical infrastructure, and large perimeters where continuous mobile monitoring can complement fixed cameras and human patrols.
+      </div>
+    </div>
+
+      </div>
+</section>
+
+<!-- ── SPECIFICATIONS ── -->
+<section id="specifications">
+  <div class="section-wrap">
+    <div class="two-col">
+      <div class="reveal">
+        <div class="section-label">Technical specifications</div>
+        <h2 class="section-title">A compact electric platform for field deployment.</h2>
+        <p class="section-desc">
+          Orioos is built around a simplified modular frame, electric propulsion, RTK-assisted positioning, 360° sensing, and cloud connectivity.
+        </p>
+      </div>
+
+      <!-- CONTEÚDO: especificações técnicas (lista repetível: nome, valor) -->
+      <div class="spec-panel reveal">
+        <div class="spec-row">
+          <div class="spec-key">Dimensions</div>
+          <div class="spec-value">790 × 750 × 1300 mm</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">Weight</div>
+          <div class="spec-value">~70 kg including battery and payload</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">Propulsion</div>
+          <div class="spec-value">Fully electric, 4-wheel drive</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">Battery</div>
+          <div class="spec-value">Li-Ion, 1500 Wh</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">Operating time</div>
+          <div class="spec-value">Up to 8h under typical patrol conditions</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">Maximum speed</div>
+          <div class="spec-value">1.5 m/s</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">Maximum slope</div>
+          <div class="spec-value">15°</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">Ground clearance</div>
+          <div class="spec-value">100 mm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SENSORS ── -->
+<section>
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">Sensors & connectivity</div>
+      <h2 class="section-title">Perception and connectivity for outdoor monitoring.</h2>
+      <p class="section-desc">
+        The sensing architecture supports wide-area visibility, obstacle detection, route following, and event capture in connected perimeter deployments.
+      </p>
+    </div>
+
+    <div class="feature-grid" data-stagger="70">
+      <div class="feature-card reveal">
+        <h3>360º vision</h3>
+        <p>A multi-camera vision system provides wide-area visual coverage for video streaming, event detection, crop observation, and image capture.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <h3>Depth & spatial sensing</h3>
+        <p>Depth and spatial sensing support obstacle detection, terrain awareness, and autonomous navigation in outdoor environments.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <h3>High-accuracy positioning</h3>
+        <p>High-accuracy positioning enables geo-referenced patrol routes, field missions, and repeatable data collection.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <h3>Onboard intelligence</h3>
+        <p>Onboard compute handles AI inference, perception, navigation, and real-time processing directly on the robot.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <h3>Mobile connectivity</h3>
+        <p>Primary cloud connectivity is provided through mobile networks, with remote access via the ViField web platform.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <h3>Cloud dashboard</h3>
+        <p>Monitor fleet status, patrol progress, live video, alerts, and exports through the ViField platform.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLATFORM ── -->
+<section class="dark-band">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">Software & data platform</div>
+      <h2 class="section-title">From robot events to actionable security data.</h2>
+      <p class="section-desc">
+        Orioos is connected to the ViField cloud platform for remote operation, live monitoring, event review, and controlled data export.
+      </p>
+    </div>
+
+    <div class="platform-grid" data-stagger="70">
+      <div class="platform-card reveal">
+        <h3>Fleet management</h3>
+        <p>View robot status, battery level, position, mission progress, patrol routes, schedules, and operating parameters.</p>
+      </div>
+
+      <div class="platform-card reveal">
+        <h3>Live video & alerts</h3>
+        <p>Access live video streams, event-triggered recordings, and notifications for intrusion events or anomalies.</p>
+      </div>
+
+      <div class="platform-card reveal">
+        <h3>Controlled exports</h3>
+        <p>Export patrol logs, event records, still frames, and video clips with authenticated access and logged activity.</p>
+      </div>
+
+      <div class="platform-card reveal">
+        <h3>Integration-ready</h3>
+        <p>Deployment-specific integrations with client systems can be defined, including REST API options by agreement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRIVACY ── -->
+<section>
+  <div class="section-wrap">
+    <div class="two-col">
+      <div class="reveal">
+        <div class="section-label">Privacy-aware operation</div>
+        <h2 class="section-title">Designed for compliant perimeter deployments.</h2>
+        <p class="section-desc">
+          Orioos supports security monitoring workflows where access control, event-based recording, retention policies, and data location matter.
+        </p>
+      </div>
+
+      <div class="copy-block reveal">
+        <p>
+          Event-triggered recording can be used so video is captured when an intrusion or relevant movement event is detected, rather than recording continuously during normal patrols.
+        </p>
+        <p>
+          Data can be managed with role-based access, authenticated exports, audit logs, configurable retention periods, and deployment-specific privacy procedures.
+        </p>
+        <p>
+          The system does not require facial recognition or biometric identification for perimeter detection use cases.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEPLOYMENT ── -->
+<section>
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-label">Deployment requirements</div>
+      <h2 class="section-title">Prepared for quick site onboarding.</h2>
+      <p class="section-desc">
+        A typical deployment starts with a mapped patrol perimeter, route validation, connectivity checks, and ViField onboarding support.
+      </p>
+    </div>
+
+    <div class="requirements-list" data-stagger="70">
+      <div class="requirement-card reveal">
+        <h3>Site preparation</h3>
+        <ul>
+          <li>Defined patrol perimeter using shapefiles or GPS waypoints.</li>
+          <li>Ground surface passable for a robot of approximately 70 kg.</li>
+          <li>Maximum slope of 15° and minimum path width of 1 m.</li>
+          <li>Charging location with 230 VAC / 6 A power access.</li>
+        </ul>
+      </div>
+
+      <div class="requirement-card reveal">
+        <h3>Connectivity & operation</h3>
+        <ul>
+          <li>5G coverage across the patrol area, with 4G LTE fallback supported.</li>
+          <li>No firewall configuration required, as the robot initiates outbound connections.</li>
+          <li>No robotics expertise required for daily operation.</li>
+          <li>Web browser access with no software installation required.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="cta-card reveal">
+      <div>
+        <h2>Ready to evaluate Orioos?</h2>
+        <p>
+          Tell us about your site, perimeter length, terrain, connectivity, and operational goals. We’ll help define the right deployment model.
+        </p>
+      </div>
+      <a class="btn btn-primary btn-lg" href="mailto:info@vifield.com?subject=Orioos%20Demo%20Request">Request a demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ COMPONENTE PARTILHADO: rodapé ═══════
+     Igual em todas as páginas. No back office deve ser um único bloco reutilizável. -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="uploads/ViField6_white.png" alt="ViField">
+          <span class="footer-brand-name">ViField</span>
+        </div>
+        <p class="footer-tagline">Modular robotic systems for continuous monitoring, surveillance, and data collection.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="https://linkedin.com/company/vifield" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2Z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <nav>
+          <a href="index.html#top">Home</a>
+          <a href="index.html#technology">Technology</a>
+          <a href="index.html#industries">Industries</a>
+          <a href="index.html#solutions">Solutions</a>
+          <a href="index.html#team">Team</a>
+          <a href="news.html">News</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <nav>
+          <a href="mailto:info@vifield.com">info@vifield.com</a>
+          <span style="font-size:13px; color: oklch(62% 0.07 158); line-height:1.65;">Rua de Godim, nº 389<br>4300-394 Porto, Portugal</span>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Backed by</h4>
+        <div style="display:flex; flex-direction:column; gap: var(--sp-4); margin-top: var(--sp-2);">
+          <img src="images/inesctec.png" alt="INESC TEC" style="height:26px; width:auto; object-fit:contain; opacity:.6; filter:brightness(0) invert(1);">
+          <img src="images/uporto.png" alt="Universidade do Porto" style="height:24px; width:auto; object-fit:contain; opacity:.6; filter:brightness(0) invert(1);">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© <span id="year"></span> ViField. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#top">Back to top</a>
+        <a href="index.html">Back to home</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ═══════ FIM: rodapé ═══════ -->
+
+<script src="js/main.js"></script>
+</body>
+</html>

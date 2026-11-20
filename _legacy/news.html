@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News &amp; Press — ViField</title>
+<meta name="description" content="News, press coverage, and milestones from ViField — autonomous robots for field operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/news.css">
+</head>
+<body>
+
+<!-- ═══════ COMPONENTE PARTILHADO: cabeçalho / menu ═══════
+     Igual em todas as páginas, com pequenas diferenças nos links (ver LEIA-ME.md).
+     No back office deve passar a ser um único bloco reutilizável. -->
+<nav>
+  <a class="nav-logo" href="index.html#top">
+    <img src="uploads/ViField6_original.png" alt="ViField">
+    <span class="nav-wordmark">ViField</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#technology">Technology</a>
+    <a href="index.html#industries">Industries</a>
+    <div class="nav-item">
+      <a href="index.html#solutions">Solutions</a>
+      <div class="nav-dropdown" aria-label="Solutions submenu">
+        <a href="orioos.html">Orioos</a>
+      </div>
+    </div>
+    <a href="index.html#team">Team</a>
+    <a href="news.html" aria-current="page">News</a>
+  </div>
+  <a class="nav-cta" href="index.html#contact">Contact us</a>
+</nav>
+<!-- ═══════ FIM: cabeçalho ═══════ -->
+
+<!-- ── HERO ── -->
+<section class="news-hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="news-hero-inner">
+    <div class="news-eyebrow">Newsroom</div>
+    <h1>News, press &amp; <em>milestones</em>.</h1>
+    <p class="lead">Coverage, announcements, and deployments from ViField &mdash; as we bring autonomous robots into real-world operations.</p>
+  </div>
+</section>
+
+<!-- ── FEATURED STORY (rendered from news-data.js) ── -->
+<section id="featured">
+  <div class="section-wrap" style="padding-bottom: var(--sp-8);">
+    <div class="section-label reveal">Featured</div>
+    <div id="featuredMount"></div>
+  </div>
+</section>
+
+<!-- ── ALL UPDATES (rendered from news-data.js) ── -->
+<section id="all-news">
+  <div class="section-wrap" style="padding-top: var(--sp-8);">
+    <div class="reveal">
+      <div class="section-label">All updates</div>
+      <h2 class="section-title">Everything from the newsroom.</h2>
+    </div>
+
+    <div class="news-controls reveal" id="newsControls">
+      <div class="filter-toggle" id="filterToggle" role="tablist" aria-label="Filter news by type"></div>
+      <div class="news-count"><span id="newsCount">0</span> items</div>
+    </div>
+
+    <!-- CONTEÚDO: notícias geradas por js/news.js a partir de data/news-data.js.
+         No back office, a lista de notícias substitui data/news-data.js (mesmos campos). -->
+    <div class="news-grid" id="newsGrid" data-stagger="60"></div>
+    <div class="news-empty" id="newsEmpty">No items in this category yet.</div>
+  </div>
+</section>
+
+<!-- ═══════ COMPONENTE PARTILHADO: rodapé ═══════
+     Igual em todas as páginas. No back office deve ser um único bloco reutilizável. -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="uploads/ViField6_white.png" alt="ViField">
+          <span class="footer-brand-name">ViField</span>
+        </div>
+        <p class="footer-tagline">Modular robotic systems for continuous monitoring, surveillance, and data collection.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="https://linkedin.com/company/vifield" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2Z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <nav>
+          <a href="index.html#top">Home</a>
+          <a href="index.html#technology">Technology</a>
+          <a href="index.html#industries">Industries</a>
+          <a href="index.html#solutions">Solutions</a>
+          <a href="index.html#team">Team</a>
+          <a href="news.html">News</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <nav>
+          <a href="mailto:info@vifield.com">info@vifield.com</a>
+          <span style="font-size:13px; color: oklch(62% 0.07 158); line-height:1.65;">Rua de Godim, n&ordm; 389<br>4300-394 Porto, Portugal</span>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Backed by</h4>
+        <div style="display:flex; flex-direction:column; gap: var(--sp-4); margin-top: var(--sp-2);">
+          <img src="images/inesctec.png" alt="INESC TEC" style="height:26px; width:auto; object-fit:contain; opacity:.6; filter:brightness(0) invert(1);">
+          <img src="images/uporto.png" alt="Universidade do Porto" style="height:24px; width:auto; object-fit:contain; opacity:.6; filter:brightness(0) invert(1);">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; <span id="year"></span> ViField. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#top">Back to top</a>
+        <a href="index.html">Back to home</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ═══════ FIM: rodapé ═══════ -->
+
+<script src="data/news-data.js"></script>
+<script src="js/news.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
