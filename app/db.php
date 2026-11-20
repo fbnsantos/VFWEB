@@ -117,6 +117,11 @@ function migrate(PDO $pdo): void
         foreach ($defs as $field => $def) {
             if (!in_array($field, $existing, true)) {
                 $pdo->exec("ALTER TABLE $table ADD COLUMN \"$field\" $def");
+                // Campo novo com valor por omissão (ex.: lista de opções): os itens que já existiam recebem-no.
+                $default = (string) ($col['fields'][$field]['default'] ?? '');
+                if ($default !== '') {
+                    $pdo->prepare("UPDATE $table SET \"$field\" = ?")->execute([$default]);
+                }
             }
         }
     }
@@ -136,7 +141,7 @@ function seed(PDO $pdo): void
         $marks = implode(', ', array_fill(0, count($fields), '?'));
         $st = $pdo->prepare('INSERT INTO ' . col_table($name) . " (sort, visible, created_at, updated_at, $cols) VALUES (?, 1, ?, ?, $marks)");
         foreach ($rows as $i => $row) {
-            $st->execute(array_merge([$i + 1, $now, $now], array_map(fn($f) => $row[$f] ?? ($col['fields'][$f]['type'] === 'check' ? 0 : ''), $fields)));
+            $st->execute(array_merge([$i + 1, $now, $now], array_map(fn($f) => $row[$f] ?? ($col['fields'][$f]['type'] === 'check' ? 0 : ($col['fields'][$f]['default'] ?? '')), $fields)));
         }
     }
 

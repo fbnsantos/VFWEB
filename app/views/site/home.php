@@ -124,17 +124,40 @@ $check = '<svg viewBox="0 0 10 10" fill="none" stroke="var(--vf-green-600)" stro
       <p class="section-desc"><?= e(tx('home.team_desc')) ?></p>
     </div>
 
-    <div class="team-grid" data-stagger="70">
-<?php foreach ($team as $m): ?>
+<?php
+$board = array_values(array_filter($team, fn($m) => $m['section'] === 'advisory'));
+$team = array_values(array_filter($team, fn($m) => $m['section'] !== 'advisory'));
+$card = function (array $m): void { ?>
       <article class="team-card reveal" tabindex="0">
         <img src="<?= e(asset_url($m['photo'])) ?>" alt="<?= e($m['name']) ?>">
         <div class="team-overlay">
           <div class="team-name"><?= e($m['name']) ?></div>
+<?php if ($m['role'] !== ''): ?>
+          <div class="team-role"><?= e($m['role']) ?></div>
+<?php endif; ?>
           <p class="team-bio"><?= e($m['bio']) ?></p>
         </div>
+<?php if ($m['url'] !== ''): ?>
+        <a class="team-link" href="<?= e($m['url']) ?>"<?= preg_match('#^https?://#i', $m['url']) ? ' target="_blank" rel="noopener"' : '' ?> aria-label="<?= e($m['name']) ?>"></a>
+<?php endif; ?>
       </article>
-<?php endforeach; ?>
+<?php }; ?>
+    <div class="team-grid" data-stagger="70">
+<?php foreach ($team as $m) { $card($m); } ?>
     </div>
+
+<?php if ($board): ?>
+    <div class="reveal" id="advisory" style="margin-top: var(--sp-16);">
+      <div class="section-label"><?= e(tx('home.advisory_label')) ?></div>
+      <h2 class="section-title"><?= e(tx('home.advisory_title')) ?></h2>
+<?php if (tx('home.advisory_desc') !== ''): ?>
+      <p class="section-desc"><?= e(tx('home.advisory_desc')) ?></p>
+<?php endif; ?>
+    </div>
+    <div class="team-grid" data-stagger="70">
+<?php foreach ($board as $m) { $card($m); } ?>
+    </div>
+<?php endif; ?>
 
     <div class="spinoff-note reveal">
       <div class="spinoff-note-text">

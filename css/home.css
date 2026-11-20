@@ -639,3 +639,19 @@
   .team-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+/* Fotografia da equipa clicável (link opcional) */
+.team-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.team-role {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--vf-green-200);
+  margin-top: 2px;
+}
