@@ -40,15 +40,30 @@ function route_site(string $path): void
     not_found();
 }
 
-/** Subsistemas (PK, DSS…) definidos em Textos → Geral: lista de [nome, endereço]. */
-function subsystems(): array
+/**
+ * Menu editável (Textos → Geral): linhas «Nome | endereço»; «- Nome | endereço» é submenu do item anterior.
+ * Devolve [['label','url','children'=>[[label,url]…]]…]; âncoras (#x) ganham «/» fora da página inicial.
+ */
+function menu_items(string $key, string $page): array
 {
     $out = [];
-    foreach (lines(tx('site.subsystems')) as $line) {
+    foreach (lines(tx($key)) as $line) {
+        $child = str_starts_with($line, '-');
+        if ($child) {
+            $line = ltrim(substr($line, 1));
+        }
         [$name, $url] = array_map('trim', explode('|', $line, 2)) + [1 => ''];
         $url = clean_link($url);
-        if ($name !== '' && $url !== '') {
-            $out[] = [$name, $url];
+        if ($name === '' || $url === '') {
+            continue;
+        }
+        if ($url[0] === '#') {
+            $url = hp($page) . $url;
+        }
+        if ($child && $out) {
+            $out[array_key_last($out)]['children'][] = [$name, $url];
+        } else {
+            $out[] = ['label' => $name, 'url' => $url, 'children' => []];
         }
     }
     return $out;

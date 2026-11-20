@@ -58,30 +58,29 @@ $v = fn(string $file) => '?v=' . (is_file(ROOT . $file) ? filemtime(ROOT . $file
     <span class="nav-wordmark"><?= e(tx('site.name')) ?></span>
   </a>
   <div class="nav-links">
-    <a href="<?= $h ?>#technology">Technology</a>
-    <a href="<?= $h ?>#industries">Industries</a>
+<?php foreach (menu_items('site.menu_top', $page) as $m):
+    $isNews = rtrim($m['url'], '/') === '/news';
+    $cur = (PAGES[$page]['path'] ?? '') === $m['url'] ? ' aria-current="page"' : '';
+    if (!$m['children'] && !$isNews): ?>
+    <a href="<?= e($m['url']) ?>"<?= $cur ?>><?= e($m['label']) ?></a>
+<?php else: ?>
     <div class="nav-item">
-      <a href="<?= $h ?>#solutions">Solutions</a>
-      <div class="nav-dropdown" aria-label="Solutions submenu">
-        <a href="/orioos"<?= $page === 'orioos' ? ' aria-current="page"' : '' ?>>Orioos</a>
-<?php foreach (subsystems() as [$subName, $subUrl]): ?>
-        <a href="<?= e($subUrl) ?>"><?= e($subName) ?></a>
+      <a href="<?= e($m['url']) ?>"<?= $cur ?>><?= e($m['label']) ?></a>
+      <div class="nav-dropdown<?= $isNews ? ' nav-dropdown-news' : '' ?>" aria-label="<?= e($m['label']) ?> submenu">
+<?php foreach ($m['children'] as [$cName, $cUrl]): ?>
+        <a href="<?= e($cUrl) ?>"><?= e($cName) ?></a>
 <?php endforeach; ?>
-      </div>
-    </div>
-    <a href="<?= $h ?>#team">Team</a>
-    <div class="nav-item">
-      <a href="/news"<?= $page === 'news' ? ' aria-current="page"' : '' ?>>News</a>
-      <div class="nav-dropdown nav-dropdown-news" aria-label="Latest news">
+<?php if ($isNews): ?>
         <a href="/news"><strong>All news →</strong></a>
 <?php foreach (latest_news(4) as $n): ?>
         <a class="nav-news-link" href="<?= e($n['url'] ?: '/news') ?>"<?= preg_match('#^https?://#i', (string) $n['url']) ? ' target="_blank" rel="noopener"' : '' ?>>
           <img src="<?= e(news_image($n)) ?>" alt="" loading="lazy">
           <span><small><?= e(news_date($n['date'])) ?></small><?= e($n['title']) ?></span>
         </a>
-<?php endforeach; ?>
+<?php endforeach; endif; ?>
       </div>
     </div>
+<?php endif; endforeach; ?>
   </div>
   <a class="nav-cta" href="<?= $contactHref ?>">Contact us</a>
 </nav>
@@ -109,16 +108,11 @@ $v = fn(string $file) => '?v=' . (is_file(ROOT . $file) ? filemtime(ROOT . $file
       <div class="footer-col">
         <h4>Navigation</h4>
         <nav>
-          <a href="<?= $h ?>#top">Home</a>
-          <a href="<?= $h ?>#technology">Technology</a>
-          <a href="<?= $h ?>#industries">Industries</a>
-          <a href="<?= $h ?>#solutions">Solutions</a>
-          <a href="<?= $h ?>#team">Team</a>
-          <a href="/news">News</a>
-<?php foreach (subsystems() as [$subName, $subUrl]): ?>
-          <a href="<?= e($subUrl) ?>"><?= e($subName) ?> (login)</a>
-<?php endforeach; ?>
-          <a href="<?= $contactHref ?>">Contact</a>
+<?php foreach (menu_items('site.menu_footer', $page) as $m): ?>
+          <a href="<?= e($m['url']) ?>"><?= e($m['label']) ?></a>
+<?php foreach ($m['children'] as [$cName, $cUrl]): ?>
+          <a href="<?= e($cUrl) ?>"><?= e($cName) ?></a>
+<?php endforeach; endforeach; ?>
         </nav>
       </div>
 

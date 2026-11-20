@@ -50,9 +50,13 @@ function text_pages(): array
                     'site.address' => tf('Morada', "Rua de Godim, nº 389, 4300-394\nPorto, Portugal", 'textarea'),
                     'site.linkedin' => tf('LinkedIn (URL)', 'https://linkedin.com/company/vifield', 'url', 'Deixe vazio para esconder o ícone.'),
                 ],
-                'Menu: subsistemas' => [
-                    'site.subsystems' => tf('Subsistemas (um por linha: Nome | endereço)', "PK | /PK/login.php\nDSS | /dss/login.php", 'lines',
-                        'Aparecem como submenus em «Solutions», a seguir ao Orioos. As pastas /PK/ e /dss/ vivem no servidor e não são tocadas pelo site nem pelo deploy.'),
+                'Menu do topo' => [
+                    'site.menu_top' => tf('Itens do menu (um por linha: Nome | endereço)', "Technology | #technology\nIndustries | #industries\nSolutions | #solutions\n- Orioos | /orioos\n- PK | /PK/login.php\n- DSS | /dss/login.php\nTeam | #team\nNews | /news", 'lines',
+                        'Uma linha por item. Para um submenu, comece a linha com «- » (fica dentro do item de cima). Endereços: #secção (na página inicial), /página, ou https://… . O item com endereço /news mostra automaticamente as últimas notícias. Para passar o PK para o rodapé, apague a linha aqui e acrescente-a no menu do rodapé.'),
+                ],
+                'Menu do rodapé' => [
+                    'site.menu_footer' => tf('Itens do menu (um por linha: Nome | endereço)', "Home | #top\nTechnology | #technology\nIndustries | #industries\nSolutions | #solutions\nTeam | #team\nNews | /news\nContact | #contact", 'lines',
+                        'Coluna «Navigation» do rodapé. Mesmo formato do menu do topo (submenus com «- » aparecem como itens normais). Ex.: PK (login) | /PK/login.php'),
                 ],
                 'Rodapé' => [
                     'site.footer_tagline' => tf('Frase do rodapé', 'Modular robotic systems for continuous monitoring, surveillance, and data collection.', 'textarea'),

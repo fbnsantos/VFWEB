@@ -34,7 +34,7 @@ Abrir http://localhost:8080/admin: na primeira vez pede a `setup_key` para criar
 
 | Secção | O quê |
 |---|---|
-| **Textos das páginas** | Geral (nome, logótipos, contactos, rodapé, **subsistemas do menu**), Página inicial, Página Orioos, Página de notícias: títulos, parágrafos, botões, imagens e vídeo. Nos títulos, `*palavra*` aparece destacada a verde. |
+| **Textos das páginas** | Geral (nome, logótipos, contactos, rodapé, **menus do topo e do rodapé**), Página inicial, Página Orioos, Página de notícias: títulos, parágrafos, botões, imagens e vídeo. Nos títulos, `*palavra*` aparece destacada a verde. |
 | **Listas** | Notícias, Equipa, Tecnologia, Setores, e do Orioos: métricas, capacidades (Agricultura/Vigilância), especificações, sensores, plataforma, requisitos. Criar, editar, esconder («Visível»), apagar e reordenar (↑ ↓). |
 | **SEO (Google)** | Secção só de SEO (`/admin/seo`): título e descrição de cada página com contador e pré-visualização do resultado no Google, indexação ligada/desligada, imagem de partilha, códigos do Google Search Console e Bing, e avisos (https, tamanhos, imagens sem texto alternativo). `robots.txt` e `sitemap.xml` são automáticos. |
 | **Visitas** | Estatísticas próprias, sem cookies nem serviços externos e sem guardar IPs: visualizações, visitantes únicos, páginas mais vistas, origem (Google, LinkedIn, IA…), países (base DB-IP local, botão no ecrã), dispositivos, robôs e 404. Visitas do admin e robôs não contam. Dados com mais de 13 meses são apagados. |
@@ -46,7 +46,7 @@ Para acrescentar um campo ou uma lista nova, edite `app/content.php` (e mostre o
 
 ## Subsistemas /PK/ e /dss/
 
-`https://vifield.com/PK/login.php` e `https://vifield.com/dss/login.php` continuam a funcionar: são pastas reais do servidor, fora do git. O `.htaccess` serve ficheiros e pastas existentes tal como estão (só o resto passa pelo router) e o `git.php` (`fetch` + `reset --hard`) não toca em pastas que não estão no repositório. Aparecem como submenus de **Solutions**, a seguir ao Orioos; os nomes e endereços editam-se em **Textos → Geral → Menu: subsistemas** (um por linha, `Nome | endereço`).
+`https://vifield.com/PK/login.php` e `https://vifield.com/dss/login.php` continuam a funcionar: são pastas reais do servidor, fora do git. O `.htaccess` serve ficheiros e pastas existentes tal como estão (só o resto passa pelo router) e o `git.php` (`fetch` + `reset --hard`) não toca em pastas que não estão no repositório. Por omissão aparecem como submenus de **Solutions**; para os mudar (ex.: passar para o rodapé) edite **Textos → Geral → Menu do topo** e **Menu do rodapé** (uma linha por item, `Nome | endereço`; `- ` no início = submenu).
 
 ## Publicar (HostGator / cPanel) com deploy automático
 
