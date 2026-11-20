@@ -21,8 +21,12 @@ $qs = ($_SERVER['QUERY_STRING'] ?? '') !== '' ? '?' . $_SERVER['QUERY_STRING'] :
 $canonical = parse_url(base_url());
 if (config('canonical_redirect', true) && PHP_SAPI !== 'cli-server' && !empty($canonical['host'])) {
     $wrongHost = strcasecmp($_SERVER['HTTP_HOST'] ?? '', $canonical['host'] . (isset($canonical['port']) ? ':' . $canonical['port'] : '')) !== 0;
-    $wrongScheme = ($canonical['scheme'] ?? '') === 'https' && !is_https();
-    if ($wrongHost || $wrongScheme) {
+    // O esquema só se corrige com a certeza de que o pedido chegou em http (porta 80, sem sinais de proxy https);
+    // caso contrário um proxy mal detetado causava redirecionamentos sem fim.
+    $wrongScheme = ($canonical['scheme'] ?? '') === 'https' && !is_https() && (int) ($_SERVER['SERVER_PORT'] ?? 0) === 80;
+    // Disjuntor: se o mesmo pedido já foi redirecionado uma vez (cookie), não repete (evita ciclos).
+    if (($wrongHost || $wrongScheme) && !isset($_COOKIE['vf_canon'])) {
+        setcookie('vf_canon', '1', ['expires' => time() + 60, 'path' => '/', 'samesite' => 'Lax']);
         redirect(base_url() . ($_SERVER['REQUEST_URI'] ?? '/'), 301);
     }
 }

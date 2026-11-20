@@ -14,8 +14,12 @@ function e(?string $s): string
 
 function is_https(): bool
 {
+    // Também atrás de proxy/CDN (cPanel, Cloudflare, load balancers), que indicam o https por cabeçalhos.
     return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-        || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+        || (int) ($_SERVER['SERVER_PORT'] ?? 0) === 443
+        || stripos((string) ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ''), 'https') !== false
+        || strtolower((string) ($_SERVER['HTTP_X_FORWARDED_SSL'] ?? '')) === 'on'
+        || str_contains((string) ($_SERVER['HTTP_CF_VISITOR'] ?? ''), '"https"');
 }
 
 function base_url(): string
