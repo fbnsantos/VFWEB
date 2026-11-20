@@ -382,7 +382,7 @@
   z-index: 2;
   padding: var(--sp-6);
   color: white;
-  transform: translateY(calc(100% - 64px));
+  transform: translateY(calc(100% - 96px));
   transition: transform .38s ease;
 }
 
@@ -392,7 +392,7 @@
 }
 
 .team-name {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -.03em;
@@ -649,9 +649,11 @@
 
 .team-role {
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: .08em;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--vf-green-200);
-  margin-top: 2px;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, .45);
+  margin: -2px 0 var(--sp-2);
 }
